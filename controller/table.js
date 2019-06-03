@@ -13,4 +13,11 @@ router.get('/producer', function (req, res, next) {
     res.render('producer', { title: 'Producer' });
 });
 
+router.get('/order-list', function (req, res, next) {
+    res.render('order-list', { title: 'Order' });
+});
+
+router.get('/customer', function (req, res, next) {
+    res.render('customer', { title: 'Customer' });
+});
 module.exports = router;
