@@ -1,0 +1,71 @@
+<!-- tables -->
+<link rel="stylesheet" type="text/css" href="table-style.css" />
+<link rel="stylesheet" type="text/css" href="basictable.css" />
+<script type="text/javascript" src="jquery.basictable.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('#table').basictable();
+
+      $('#table-breakpoint').basictable({
+        breakpoint: 768
+      });
+
+      $('#table-swap-axis').basictable({
+        swapAxis: true
+      });
+
+      $('#table-force-off').basictable({
+        forceResponsive: false
+      });
+
+      $('#table-no-resize').basictable({
+        noResize: true
+      });
+
+      $('#table-two-axis').basictable();
+
+      $('#table-max-height').basictable({
+        tableWrapper: true
+      });
+    });
+</script>
+<!-- //tables -->
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Customer Management</li>
+</ol>
+<!-- tables -->
+<div class="agile-tables">
+    <div class="w3l-table-info">
+      <div class="row">
+        <div id="h4" class="col-md-10">Customer Management</div>
+      </div>
+      <table id="table">
+          <thead>
+              <tr>
+                  <th>Username</th>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th></th>
+              </tr>
+              
+          </thead>
+          <tbody>
+            {{#each all_customer}}
+              <tr>
+                  <td>{{this.Username}}</td>
+                  <td>{{this.Name}}</td>
+                  <td>{{this.Email}}</td>
+                  <td>
+                      <form action="" method="POST">
+                        <button type="submit" data-toggle="tooltip" title="Trash" class="pd-setting-ed" ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                      </form>
+                    </div>
+                  </td>
+              </tr>
+            {{/each}}
+          </tbody>
+      </table>
+    </div>
+</div>
+<!-- //tables -->

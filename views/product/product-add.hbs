@@ -1,0 +1,168 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Forms <i class="fa fa-angle-right"></i> Validation</li>
+</ol>
+<h3 id="h3" class="text-center h3">Add Product</h3>
+<div class="validation-system">
+    <form action="/product-add" method="POST" enctype="multipart/form-data">
+        <div class="validation-form">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    {{#if mess}}
+                        <div class="form-group ">
+                            <label class="col-md-3 col-md-offset-2 control-label color-red">Error</label>
+                            <div class="col-md-5">
+                                <div class="input-group">	
+                                    <input type="text" class="form-control1 color-red" value="{{mess}}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    {{/if}}
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Image</label>
+                        <div class="col-md-5 ">
+                            <div class="input-group">
+                                <input type="file" id="exampleInputFile" name="Image">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <p class="help-block color-red">(*)</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Name</label>
+                        <div class="col-md-5">
+                            <div class="input-group">							
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" placeholder="name" name="Name">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <p class="help-block color-red">(*)</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2  control-label">Category</label>
+                        <div class="col-md-5">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <select class="form-control" name="Category">
+                                    <option value="shirt">shirt</option>
+                                    <option value="tshirt">tshirt</option>
+                                    <option value="sport">sport</option>
+                                    <option value="dress">dress</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <p class="help-block color-red">(*)</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Gender</label>
+                        <div class="col-md-5">
+                            <div class="input-group input-icon right">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <select class="form-control" name="Gender">
+                                    <option value="boy">boy</option>
+                                    <option value="girl">girl</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <p class="help-block color-red">(*)</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Cost</label>
+                        <div class="col-md-5">
+                            <div class="input-group input-icon right">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" name="Cost">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <p class="help-block color-red">(*)</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Sale</label>
+                        <div class="col-md-5">
+                            <div class="input-group input-icon right">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input class="form-control1" type="text" name="Sale">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <p class="help-block color-red">(*)</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Amount</label>
+                        <div class="col-md-5">
+                            <div class="input-group input-icon right">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" name="Amount">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <p class="help-block color-red">(*)</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Describe</label>
+                        <div class="col-md-5">
+                            <div class="input-group input-icon right">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" name="Describe">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <p class="help-block color-red">(*)</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Product_Group</label>
+                        <div class="col-md-5">
+                            <div class="input-group input-icon right">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <select class="form-control" name="Product_Group">
+                                    <option value="popular">popular</option>
+                                    <option value="feature">feature</option>
+                                    <option value="new">new</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <p class="help-block color-red">(*)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-5">
+                    <input type="submit" value="Save" id="button-add" class="btn btn-primary waves-effect waves-light m-r-10">
+                    <a class="btn-default btn" href="/">Cancel</a>
+                </div>
+            </div>
+        </div>
+     </form>
+  </div>
+</div>

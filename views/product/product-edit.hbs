@@ -1,0 +1,133 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Forms <i class="fa fa-angle-right"></i> Validation</li>
+</ol>
+<h3 id="h3" class="text-center h3">Edit Product</h3>
+<div class="validation-system">
+    <form action="/product-edit" method="post" enctype="multipart/form-data">
+        <div class="validation-form">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    {{#if mess}}
+                        <div class="form-group ">
+                            <label class="col-md-3 col-md-offset-2 control-label color-red">Error</label>
+                            <div class="col-md-5">
+                                <div class="input-group">	
+                                    <input type="text" class="form-control1 color-red" value="{{mess}}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    {{/if}}
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Image</label>
+                        <div class="col-md-5 ">
+                            <div class="input-group">
+                                <input type="file" id="exampleInputFile" name="Image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Name</label>
+                        <div class="col-md-5">
+                            <div class="input-group">							
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" value="{{product.Name}}"  name="Name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2  control-label">Category</label>
+                        <div class="col-md-5">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" id="exampleInputPassword1" value="{{product.Category}}" name="Category">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Gender</label>
+                        <div class="col-md-5">
+                            <div class="input-group input-icon right">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input id="email" class="form-control1" type="text" value="{{product.Gender}}" name="Gender">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Cost</label>
+                        <div class="col-md-5">
+                            <div class="input-group input-icon right">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" value="{{product.Cost}}" name="Cost">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Sale</label>
+                        <div class="col-md-5">
+                            <div class="input-group input-icon right">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input class="form-control1" type="text" value="{{product.Sale}}" name="Sale">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Amount</label>
+                        <div class="col-md-5">
+                            <div class="input-group input-icon right">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" value="{{product.Amount}}" name="Amount">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Describe</label>
+                        <div class="col-md-5">
+                            <div class="input-group input-icon right">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" value="{{product.Describe}}" name="Describe">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Product_Group</label>
+                        <div class="col-md-5">
+                            <div class="input-group input-icon right">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <select class="form-control" name="Product_Group">
+                                    <option value="Popular">Popular</option>
+                                    <option value="Feature">Feature</option>
+                                    <option value="New">New</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-5">
+                    <input type="submit" value="Save" id="button-add" class="btn btn-primary waves-effect waves-light m-r-10">
+                    <a class="btn-default btn" href="/product-management">Cancel</a>
+                </div>
+            </div>
+        </div>
+     </form>
+  </div>
+</div>
