@@ -8,7 +8,8 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('connect-flash');
 const validator = require('express-validator');
-const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
+const admin = require('./models/admin');
 
 const indexRouter = require('./controller/index');
 const productManagementRouter = require('./controller/product-management');
@@ -17,7 +18,12 @@ const loginRouter = require('./controller/admin/login');
 const registerRouter = require('./controller/admin/register');
 var app = express();
 
-const uri = "mongodb+srv://BaoDang:baodang@cluster0-ek6kq.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb+srv://BaoDang:baodang@cluster0-ek6kq.mongodb.net/pttkshoppingdb"; 
+mongoose.Promise = global.Promise;
+mongoose.connect(uri, {useNewUrlParser: true}).then(
+  ()=>{console.log('connect is success')},
+  err=>{console.log(err);}
+);
 
 passport.use(new localStrategy({
   usernameField: 'Username',
@@ -25,47 +31,31 @@ passport.use(new localStrategy({
   passReqToCallback: true //cho phép req.flash()
   },function(req, Username, Password, done){
     process.nextTick(function(){
-      MongoClient.connect(uri, {useNewUrlParser: true}, function(err, dbRef){
-        if(err){
-            return done(err);
+      admin.findOne({'Username': Username}).exec((err, user)=>{
+        if(!user){
+          return done(null, false, req.flash('mess', 'Incorrect Username and Password'));
         }
         else{
-            const collectionCus = dbRef.db('pttkshoppingdb').collection('Admin');
-            let Async_Await = async()=>{
-              const user = await collectionCus.findOne({'Username': Username});
-              if(!user){
-                return done(null, false, req.flash('mess', 'Incorrect Username and Password'));
-              }
-              else{
-                if(!bcrypt.compareSync(Password, user.Password)){
-                  return done(null, false, req.flash('mess', 'Incorrect Username and Password'));
-                }
-                else{
-                  return done(null, user)
-                }
-              }
-            }
-            Async_Await();
+          if(!bcrypt.compareSync(Password, user.Password)){
+            return done(null, false, req.flash('mess', 'Incorrect Username and Password'));
+          }
+          else{
+            return done(null, user)
+          }
         }
+      });
     });
-    })
-}));
+  }
+));
 
 passport.serializeUser(function(user, done){
   done(null, user.Username);
 });
 
 passport.deserializeUser(function(Username, done){
-  MongoClient.connect(uri, {useNewUrlParser: true}, function(err, dbRef){
+  admin.findOne({Username: Username}).exec((err, user)=>{
     if(err) return done(err);
-    else{
-      const customerCollection = dbRef.db('pttkshoppingdb').collection('Admin');
-      customerCollection.findOne({Username: Username}, function(err, user){
-        if(err) return done(err);
-        dbRef.close();
-        return done(err, user);
-      });
-    }
+    return done(err, user);
   });
 });
 

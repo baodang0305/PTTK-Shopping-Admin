@@ -72,8 +72,8 @@
           <td>
             <div class="float-right">
               <a href="/product-edit-{{this._id}}"><button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-              <form action="" method="POST">
-                <button type="submit" data-toggle="tooltip" title="Trash" class="pd-setting-ed" ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              <form action="/product-delete-{{this._id}}" method="POST">
+                <button type="submit" data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
               </form>
             </div>
           </td>

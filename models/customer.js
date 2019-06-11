@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
-const Schame = mongoose.Schema;
 
-const adminSchame = new Schame({
+const mongoose = require('mongoose');
+const schame = mongoose.Schema;
+
+const customerSchame = new schame({
     Username: {
         type: String,
         required: true
@@ -10,16 +11,16 @@ const adminSchame = new Schame({
         type: String,
         required: true
     },
-    Name: {
-        type: String,
-        required: true
-    },
     Email: {
         type: String,
         required: true
+    },
+    Name: {
+        type: String,
+        required: true
     }
-}, {collection: 'Admin'});
+},{collection: 'Customer'});
 
-const Admin = mongoose.model('Admin', adminSchame);
-module.exports = Admin;
+const customer = mongoose.model('customer', customerSchame);
+module.exports = customer;
 
