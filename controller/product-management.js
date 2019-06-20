@@ -1,35 +1,16 @@
-const express = require('express');
-const multer = require('multer');
-const path = require('path');
 const ObjectId = require('mongodb').ObjectID;
-const product = require('../models/product');
-const router = express.Router();
+const productModel = require('../models/product');
 
-const storage = multer.diskStorage({
-  destination: './public/images',
-  filename: function(req, file, cb){
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
-})
+exports.load_product_management_page = async(req, res) => {
+  let all_product =  await productModel.find();
+  res.render('product-management', {title: 'Product Management', 'user': req.user, 'all_product': all_product});
+}
 
-const upload = multer({storage: storage}).single('Image');
+exports.load_product_add_page = function(req, res){
+  res.render('product-add', {title: 'Product Add', 'user': req.user});
+}
 
-router.get('/product-management', function(req, res, next) {
-    product.find({}).exec((err, all_product)=>{
-      if(err){
-        console.log(err);
-      }
-      else{
-        res.render('product-management', {title: 'Product Management', 'all_product': all_product});
-      }
-    });
-});
-
-router.get('/product-add', function(req, res, next){
-  res.render('product-add', {title: 'Product Add'});
-});
-
-router.post('/product-add', upload, function(req, res, next){
+exports.product_add = async(req, res)=>{
   req.checkBody('Name', 'name').notEmpty();
   req.checkBody('Category', 'category').notEmpty();
   req.checkBody('Gender', 'gender').notEmpty();
@@ -37,20 +18,20 @@ router.post('/product-add', upload, function(req, res, next){
   req.checkBody('Sale', 'sale').isNumeric(); 
   req.checkBody('Amount', 'amount').isNumeric();
   req.checkBody('Describe', 'describe').notEmpty();
-  const temp = req.validationErrors();
-  if(temp){
-    let strErr;
-    for(let i=0;i<temp.length;i++){
-      strErr = strErr + ", " + temp[i].msg;
+  const errors = req.validationErrors();
+  if(errors){
+    let strError="";
+    for(let i=0;i<errors.length-1;i++){
+      strError = strError + errors[i].msg + ", ";
     }
-    strErr = strErr + " invalid.";
-    res.render('product-add', {title: 'Product Add', 'mess': strErr});
+    strError = strError + errors[errors.length - 1].msg + " invalid.";
+    res.render('product-add', {title: 'Product Add', 'user': req.user, 'strError': strError});
   }
   else if(req.file == null){
-    res.render('product-add', {title: 'Product Add', 'mess': "image file is empty"});
+    res.render('product-add', {title: 'Product Add', 'user': req.user, 'strError': "image file is empty"});
   }
   else{
-    const pro = new product({
+    const pro = new productModel({
       Image: req.file.filename,
       Name: req.body.Name,
       Category: req.body.Category,
@@ -61,27 +42,24 @@ router.post('/product-add', upload, function(req, res, next){
       Describe: req.body.Describe,
       Product_Group: req.body.Product_Group
     });
-    product.create(pro, function(err){
+    await productModel.create(pro, function(err){
       if(err) return console.log(err);
       else{
         console.log('insert is success');
       }
     })
-    res.redirect('/product-management');
+    res.redirect('/product/management');
   }
-})
+}
 
-let object_id;
-router.get('/product-edit-:id', function(req,res, next){
+exports.load_product_detail_page = async(req,res)=>{
   var id = req.params.id;
   object_id = new ObjectId(id);
-  product.findOne({_id: object_id}).exec((err, pro)=>{
-    if(err) return console.log(err);
-    res.render('product-edit', {title: 'Product Edit', 'product': pro});
-  });
-});
+  let product = await productModel.findOne({_id: object_id});
+  res.render('product-edit', {title: 'Product Edit', 'user': req.user, 'product': product});
+}
 
-router.post('/product-edit', upload, function(req, res, next){
+exports.product_edit = async(req, res)=>{
   req.checkBody('Name', 'name').notEmpty();
   req.checkBody('Category', 'category').notEmpty();
   req.checkBody('Gender', 'gender').notEmpty();
@@ -89,14 +67,14 @@ router.post('/product-edit', upload, function(req, res, next){
   req.checkBody('Sale', 'sale').isNumeric(); 
   req.checkBody('Amount', 'amount').isNumeric();
   req.checkBody('Describe', 'describe').notEmpty();
-  const temp = req.validationErrors();
-  if(temp){
-    let strErr;
-    for(let i=0;i<temp.length;i++){
-      strErr = strErr + ", " + temp[i].msg;
+  const errors = req.validationErrors();
+  if(errors){
+    let strError="";
+    for(let i=0;i<errors.length-1;i++){
+      strError = strError + errors[i].msg + ", ";
     }
-    strErr = strErr + " invalid.";
-    res.render('product-edit', {title: 'Product Edit', 'mess': strErr});
+    strError = strError + errors[errors.length - 1].msg + " invalid.";
+    res.render('product-edit', {title: 'Product Edit', 'user': req.user, 'strError': strError});
   }
   else{
     let strImg = req.body.strName;
@@ -114,7 +92,7 @@ router.post('/product-edit', upload, function(req, res, next){
       Describe: req.body.Describe,
       Product_Group: req.body.Product_Group
     };
-    product.updateOne({"_id": object_id},{$set: product_edit}, function(err, res){
+    await productModel.updateOne({"_id": object_id},{$set: product_edit}, function(err, res){
       if(err){
         console.log(err);
       }
@@ -122,14 +100,14 @@ router.post('/product-edit', upload, function(req, res, next){
         console.log("product is Updated ");
       }
     });
-    res.redirect('/product-management');
+    res.redirect('/product/management');
   }
-});
+}
 
-router.post('/product-delete-:id', function(req, res, next){
+exports.product_delete = async(req, res)=>{
   let id = req.params.id;
   object_id = new ObjectId(id);
-  product.deleteOne({"_id": object_id}, function(err, res){
+  await productModel.deleteOne({"_id": object_id}, function(err, res){
     if(err){
       console.log(err);
     }
@@ -137,7 +115,6 @@ router.post('/product-delete-:id', function(req, res, next){
       console.log("product is deleted");
     }
   });
-  res.redirect('/product-management');
-})
+  res.redirect('/product/management');
+}
 
-module.exports = router;

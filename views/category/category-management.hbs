@@ -32,47 +32,33 @@
 <!-- //tables -->
 
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Home</a><i class="fa fa-angle-right"></i>Product Management</li>
+    <li class="breadcrumb-item"><a href="/">Home</a><i class="fa fa-angle-right"></i>Category Management</li>
 </ol>
 
 <!-- tables -->
 <div class="agile-tables">
   <div class="w3l-table-info">
     <div class="row">
-      <div id="h4" class="col-md-10">Product Management</div>
-      <a href="product-add" class="col-md-2 add-product">Add Product</a>
+      <div id="h4" class="col-md-10">Category Management</div>
+      <a href="category-add" class="col-md-4 add-manufacturer">Add Category</a>
     </div>
     <table id="table">
       <thead>
         <tr>
-          <th>Image</th>
+          <th>Id</th>
           <th>Name</th>
-          <th>Category</th>
-          <th>Gender</th>
-          <th>Cost</th>
-          <th>Sale</th>
-          <th>Amount</th>
-          <th>Describe</th>
-          <th>Product_Group</th>
           <th></th>
         </tr>
       </thead>
       <tbody>    
-      {{#each all_product}}
+      {{#each all_category}}
         <tr>
-          <td><img id="img" src="/images/{{this.Image}}" alt="" /></td>
+          <td>{{this.Id}}</td>
           <td>{{this.Name}}</td>
-          <td>{{this.Category}}</td>
-          <td>{{this.Gender}}</td>
-          <td>{{this.Cost}}</td>
-          <td>{{this.Sale}}</td>
-          <td>{{this.Amount}}</td>
-          <td>{{this.Describe}}</td>
-          <td>{{this.Product_Group}}</td>
           <td>
             <div class="float-right">
-              <a href="product-detail={{this._id}}"><button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-              <form action="product-delete={{this._id}}" method="POST">
+              <a href="/category/category-detail={{this._id}}"><button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+              <form action="/category/category-delete={{this._id}}" method="POST">
                 <button type="submit" data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
               </form>
             </div>

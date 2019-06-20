@@ -3,6 +3,14 @@
     font-weight: bold;
 }
 
+.color-red{
+    color: red;
+}
+
+.color-blue{
+    color: blue;
+}
+
 #h3{
     color:  #e12503;
 }
@@ -13,6 +21,19 @@
    cursor: pointer;
    color: #fff;
    border-radius: 4px;
+}
+
+.add-manufacturer{
+    float: right;
+    margin-right: 20px;
+    position: absolute;
+    width: 180px;
+    right: 50px;
+    background: -webkit-linear-gradient(178deg, #e12503 0%, #85060c 100%);
+    background: linear-gradient(178deg, #e12503 0%, #85060c 100%);
+    padding: 6px 20px;
+    color: #fff;
+    border-radius: 4px;
 }
 
 .add-product {

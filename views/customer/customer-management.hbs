@@ -1,7 +1,7 @@
 <!-- tables -->
-<link rel="stylesheet" type="text/css" href="table-style.css" />
-<link rel="stylesheet" type="text/css" href="basictable.css" />
-<script type="text/javascript" src="jquery.basictable.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/table-style.css" />
+<link rel="stylesheet" type="text/css" href="/stylesheets/basictable.css" />
+<script type="text/javascript" src="/javascripts/jquery.basictable.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
       $('#table').basictable();
@@ -32,7 +32,7 @@
 <!-- //tables -->
 
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Customer Management</li>
+    <li class="breadcrumb-item"><a href="/">Home</a><i class="fa fa-angle-right"></i>Customer Management</li>
 </ol>
 <!-- tables -->
 <div class="agile-tables">
@@ -57,7 +57,7 @@
                   <td>{{this.Name}}</td>
                   <td>{{this.Email}}</td>
                   <td>
-                      <form action="/customer-delete-{{this._id}}" method="POST">
+                      <form action="/customer/customer-delete={{this._id}}" method="POST">
                         <button type="submit" data-toggle="tooltip" title="Trash" class="pd-setting-ed" ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                       </form>
                     </div>

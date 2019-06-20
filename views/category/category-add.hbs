@@ -1,0 +1,49 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a><i class="fa fa-angle-right"></i>Forms <i class="fa fa-angle-right"></i> Validation</li>
+</ol>
+<h3 id="h3" class="text-center h3">Add Category</h3>
+<div class="validation-system">
+    <form action="/category/category-add" method="POST" >
+        <div class="validation-form">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    {{#if strError}}
+                        <div class="alert alert-danger">
+                            {{strError}}
+                        </div>
+                    {{/if}}
+                   <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Id</label>
+                        <div class="col-md-5">
+                            <div class="input-group">							
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" value="{{category.Id}}"  name="Id">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2  control-label">Name</label>
+                        <div class="col-md-5">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" value="{{category.Name}}"  name="Name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-5">
+                    <input type="submit" value="Save" id="button-add" class="btn btn-primary waves-effect waves-light m-r-10">
+                    <a class="btn-default btn" href="/category/management">Cancel</a>
+                </div>
+            </div>
+        </div>
+     </form>
+  </div>
+</div>

@@ -1,9 +1,9 @@
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Home</a><i class="fa fa-angle-right"></i>Forms <i class="fa fa-angle-right"></i> Validation</li>
 </ol>
-<h3 id="h3" class="text-center h3">Edit Manufacturer</h3>
+<h3 id="h3" class="text-center h3">Add Manufacturer</h3>
 <div class="validation-system">
-    <form action="/manufacturer/manufacturer-edit" method="post">
+    <form action="/manufacturer/manufacturer-add" method="POST" >
         <div class="validation-form">
             <div class="panel-body">
                 <div class="form-horizontal">
@@ -12,7 +12,7 @@
                             {{strError}}
                         </div>
                     {{/if}}
-                    <div class="form-group">
+                   <div class="form-group">
                         <label class="col-md-3 col-md-offset-2 control-label">Name</label>
                         <div class="col-md-5">
                             <div class="input-group">							
@@ -41,12 +41,12 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-pencil"></i>
                                 </span>
-                                <input type="text" class="form-control1" value="{{manufacturer.Email}}"  name="Email">
+                                <input type="Email" class="form-control1" value="{{manufacturer.Email}}"  name="Email">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 col-md-offset-2 control-label">Phone number</label>
+                        <label class="col-md-3 col-md-offset-2 control-label">Phone Number</label>
                         <div class="col-md-5">
                             <div class="input-group input-icon right">
                                 <span class="input-group-addon">
@@ -56,10 +56,8 @@
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
-        
         <div class="panel-footer">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-5">

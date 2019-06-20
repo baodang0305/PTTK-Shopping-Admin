@@ -1,0 +1,99 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a><i class="fa fa-angle-right"></i>Forms <i class="fa fa-angle-right"></i> Validation</li>
+</ol>
+<h3 id="h3" class="text-center h3">Edit Order</h3>
+<div class="validation-system">
+    <form action="/order/order-edit" method="post">
+        <div class="validation-form">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    {{#if strError}}
+                        <div class="alert alert-danger">
+                            {{strError}}
+                        </div>
+                    {{/if}}
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Username</label>
+                        <div class="col-md-5">
+                            <div class="input-group">							
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" value="{{order.Username}}"  name="Username" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2  control-label">Receiver Name</label>
+                        <div class="col-md-5">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" value="{{order.ReceiverName}}"  name="ReceiverName" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Receiver Address</label>
+                        <div class="col-md-5">
+                            <div class="input-group">							
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" value="{{order.ReceiverAddress}}"  name="ReceiverAddress" readonly>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Receiver Phonenumber</label>
+                        <div class="col-md-5">
+                            <div class="input-group">							
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" value="{{order.ReceiverPhonenumber}}"  name="ReceiverPhonenumber" readonly>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Sum</label>
+                        <div class="col-md-5">
+                            <div class="input-group">							
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <input type="text" class="form-control1" value="{{order.Sum}}"  name="Sum" readonly>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label class="col-md-3 col-md-offset-2 control-label">Delivery Status</label>
+                        <div class="col-md-5">
+                            <div class="input-group">							
+                                <span class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <select class="form-control" name="DeliveryStatus">
+                                    <option value="Chưa giao">Chưa giao</option>
+                                    <option value="Đã giao">Đã giao</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-5">
+                    <input type="submit" value="Save" id="button-add" class="btn btn-primary waves-effect waves-light m-r-10">
+                    <a class="btn-default btn" href="/order/management">Cancel</a>
+                </div>
+            </div>
+        </div>
+     </form>
+  </div>
+</div>

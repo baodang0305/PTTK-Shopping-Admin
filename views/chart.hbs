@@ -1,0 +1,67 @@
+<script src="/javascripts/Chart.js"></script>
+<div class="w3-agile-chat">
+    <div class="charts">
+        <div class="col-md-6 w3layouts-char">
+            <div class="charts-grids widget">
+                <h4 class="title">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Sales Total By Month</h4>
+                <canvas id="bar"> </canvas>
+            </div>
+        </div>
+        <div class="col-md-6 w3-char">
+            <div class="charts-grids widget states-mdl">
+                <h4 class="title">&emsp;&emsp;&emsp;&emsp;&emsp;Sales Total By Year (2016-2020)</h4>
+                <canvas id="line"> </canvas>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <script>
+            var barChartData = {
+                labels: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                datasets: [
+                    {
+                        fillColor: "rgb(199, 54, 39)",
+                        strokeColor: "rgba(233, 78, 2, 0.9)",
+                        highlightFill: "#e74c3c",
+                        highlightStroke: "#e74c3c",
+                        data: [{{m1}}, {{m2}}, {{m3}}, {{m4}}, {{m5}}, {{m6}}, {{m7}}, {{m8}}, {{m9}}, {{m10}}, {{m11}}, {{m12}}]
+                    }
+                ]
+            };
+            var lineChartData = {
+                labels: ["2016", "2017", "2018", "2019", "2020"],
+                datasets: [
+                    {
+                        fillColor: "rgb(199, 54, 39)",
+                        strokeColor: "#F2B33F",
+                        pointColor: "rgba(242, 179, 63, 1)",
+                        pointStrokeColor: "#fff",
+                        data: [{{y16}}, {{y17}}, {{y18}}, {{y19}}, {{y20}}]
+
+                    }
+                ]
+            };
+            new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+            new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+        </script>
+    </div>
+</div>
+
+<!-- script-for sticky-nav -->
+<script>
+    $(document).ready(function () {
+        var navoffeset = $(".header-main").offset().top;
+        $(window).scroll(function () {
+            var scrollpos = $(window).scrollTop();
+            if (scrollpos >= navoffeset) {
+                $(".header-main").addClass("fixed");
+            } else {
+                $(".header-main").removeClass("fixed");
+            }
+        });
+    });
+</script>
+<!-- /script-for sticky-nav -->
+
+<!-- candlestick -->
+<script type="text/javascript" src="/javascripts/jquery.jqcandlestick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/jqcandlestick.css" />
