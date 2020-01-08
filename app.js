@@ -28,7 +28,7 @@ const option = {
   reconnectInterval: 3000
 };
 const run = async () => {
-  await mongoose.connect('mongodb+srv://BaoDang:baodang@cluster0-ek6kq.mongodb.net/pttkshoppingdb', option);
+  await mongoose.connect('mongodb+srv://baodang:baodang@cluster0-nsn2s.mongodb.net/pttk-shopping-web', option);
 }
 run().catch(error => console.error(error));
 
