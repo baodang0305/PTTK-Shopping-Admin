@@ -1,5 +1,22 @@
 const ObjectId = require('mongodb').ObjectID;
 const productModel = require('../models/product');
+const {createProduct} = require("../models/product");
+
+exports.createProduct = function(req, res){
+
+  const infoProduct = {
+      Image:"image",
+      Name:"shirt-man",
+      Category:"shirt",
+      Gender:"man",
+      Cost:10,
+      Sale:0,
+      Amount:5,
+      Describe: "product is very beautiful",
+      Product_Group: "popular"
+  }
+  createProduct(infoProduct);
+}
 
 exports.load_product_management_page = async(req, res) => {
   let all_product =  await productModel.find();

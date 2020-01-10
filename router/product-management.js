@@ -13,6 +13,8 @@ const storage = multer.diskStorage({
   
 const upload = multer({storage: storage}).single('Image');
 
+router.get('/create', productManagement.createProduct);
+
 router.get('/management', productManagement.load_product_management_page);
 
 router.get('/product-add', productManagement.load_product_add_page);
